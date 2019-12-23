@@ -4,7 +4,7 @@ const app = require('./configs/custom-express');
 
 const port = 3000;
 
-moongose.connect('mongodb://localhost:27017/teste', {
+moongose.connect('mongodb://localhost:27017/moviesex', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

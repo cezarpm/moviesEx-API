@@ -21,7 +21,7 @@ module.exports = {
   },
 
   async index(req, res) {
-    const movies = await Movie.find({});
+    const movies = await Movie.find({}).sort({ rank: 1 });
 
     return res.json(movies);
   },
