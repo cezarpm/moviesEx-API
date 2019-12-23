@@ -2,7 +2,7 @@ const Movie = require('../models/movieSchema');
 
 module.exports = {
   async store(req, res) {
-    const { name } = req.body;
+    const { name, nota } = req.body;
 
     const movieExists = await Movie.exists({ name });
 
@@ -14,6 +14,7 @@ module.exports = {
 
     const movie = await Movie.create({
       name,
+      nota,
     });
 
     return res.json(movie);
@@ -23,5 +24,13 @@ module.exports = {
     const movies = await Movie.find({});
 
     return res.json(movies);
+  },
+
+  async delete(req, res) {
+    const { name } = req.body;
+
+    const movieDeleted = await Movie.deleteOne({ name });
+
+    return res.json(movieDeleted);
   },
 };
