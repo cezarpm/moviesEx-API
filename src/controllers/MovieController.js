@@ -29,8 +29,16 @@ module.exports = {
   async delete(req, res) {
     const { name } = req.body;
 
-    const movieDeleted = await Movie.deleteOne({ name });
+    const movieDeleted = await Movie.findOneAndRemove({ name });
 
     return res.json(movieDeleted);
+  },
+
+  async update(req, res) {
+    const { name, newname } = req.body;
+
+    const movieUpdated = await Movie.findOneAndUpdate({ name }, { name: newname }, { new: true });
+
+    return res.json(movieUpdated);
   },
 };
