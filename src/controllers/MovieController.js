@@ -35,9 +35,9 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { name, newname } = req.body;
+    const { title, watched } = req.body;
 
-    const movieUpdated = await Movie.findOneAndUpdate({ name }, { name: newname }, { new: true });
+    const movieUpdated = await Movie.findOneAndUpdate({ title }, { watched }, { new: true });
 
     return res.json(movieUpdated);
   },

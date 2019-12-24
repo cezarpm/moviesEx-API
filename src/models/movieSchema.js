@@ -4,6 +4,7 @@ const MovieSchema = new Schema({
   rank: Number,
   title: String,
   nota: Number,
+  watched: Boolean,
 });
 
 module.exports = model('Movie', MovieSchema);

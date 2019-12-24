@@ -2,7 +2,7 @@ const moongose = require('mongoose');
 
 const app = require('./configs/custom-express');
 
-const port = 3000;
+const port = 8000;
 
 moongose.connect('mongodb://localhost:27017/moviesex', {
   useNewUrlParser: true,
