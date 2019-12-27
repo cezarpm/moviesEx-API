@@ -4,6 +4,7 @@ const MovieSchema = new Schema({
   rank: Number,
   title: String,
   nota: Number,
+  img: String,
   watched: Boolean,
 });
 
