@@ -27,8 +27,15 @@ module.exports = {
   // GET: /movies
   async index(req, res) {
     const movies = await Movie.find({}).sort({ rank: 1 });
+    const moviesWatched = await Movie.find({ watched: true }).sort({ rank: 1 });
+    const moviesNotWatched = await Movie.find({ watched: false }).sort({ rank: 1 });
 
-    return res.json(movies);
+    const data = {
+      movies: [movies],
+      moviesWatched: [moviesWatched],
+      moviesNotWatched: [moviesNotWatched],
+    };
+    return res.json(data);
   },
 
   // DELETE: /movies
@@ -43,10 +50,16 @@ module.exports = {
   // UPDATE: /movies
   async update(req, res) {
     const { title, watched } = req.body;
+    console.log(title, watched);
 
-    if (!title || !watched) return res.status(400).json({ error: 'All fields are required' });
+    let condition = false;
 
-    const movieUpdated = await Movie.findOneAndUpdate({ title }, { watched }, { new: true });
+    // if (!title || !watched) return res.status(400).json({ error: 'All fields are required' });
+
+    if (watched === true) { condition = false; }
+    if (watched === false) { condition = true; }
+
+    const movieUpdated = await Movie.findOneAndUpdate({ title }, { watched: condition }, { new: true });
 
     return res.json(movieUpdated);
   },
